@@ -46,6 +46,7 @@ public:
 public:
 	//写入信息 ,默认只记录错误信息
     void TraceInfo(std::string strInfo,LogLevel logLevel = Log_Error);
+    void setLogPath(std::string& logPtah);
 
 
 private:
@@ -53,13 +54,13 @@ private:
     LogLevel nLogLevel;// logLevel 级别
     std::string logFilePath;//log 路径
     std::string logFileName;//log文件名称
-public:
+private:
     //写文件操作
     void createLogPath();
-    void setLogPath(std::string& logPtah);
     void createLogFilename(); //创建log文件
     std::string GetCurrentSystemTime();//获取当前系统时间 年，月，日
     std::string GetCurrTime();//时，分，秒
-    void Trace(std::string& logInfo);//写入跟踪信息
+    void Trace(std::string& logInfo);//写入跟踪信息  
+
 };
 

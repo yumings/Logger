@@ -1,4 +1,5 @@
 #include <Logger.h>
+#include <log_define.h>
 #include <thread>
 #include <string>
 
@@ -17,7 +18,6 @@ void fun(Logger* log,int a)
 int main(int argc,char* argv[])
 {
 	Logger* log = Logger::getInstance();
-
 
 	log->TraceInfo("image has changed");	
 	log->TraceInfo("image has changed",LogLevel::Log_Warning);	
