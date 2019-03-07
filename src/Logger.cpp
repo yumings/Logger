@@ -149,7 +149,11 @@ void Logger::Trace(std::string & logInfo)
 std::string Logger::GetCurrentSystemTime()
 {//获取系统时间
 #ifdef _WIN32
-    std::string logFileName = "2019-02-26.log";
+    SYSTEMTIME sys;
+    GetLocalTime(&sys);
+    char timeStr[20];
+    sprintf_s(timeStr, "%4d-%02d-%02d.log", sys.wYear, sys.wMonth, sys.wDay);
+    std::string logFileName(timeStr);
 #else 
     struct timeval tv = {0};
     gettimeofday(&tv,NULL);   
@@ -164,7 +168,11 @@ std::string Logger::GetCurrentSystemTime()
 std::string Logger::GetCurrTime()
 {
 #ifdef _WIN32
-    std::string str;
+    SYSTEMTIME sys;
+    GetLocalTime(&sys);
+    char timeStr[20];
+    sprintf_s(timeStr,"%02d:%02d:%02d.%03ld", sys.wHour, sys.wMinute, sys.wSecond, sys.wMilliseconds);
+    std::string str(timeStr);
 #else
     struct timeval tv = {0};
     gettimeofday(&tv,NULL);   
@@ -174,6 +182,5 @@ std::string Logger::GetCurrTime()
     sprintf(timeStr, "%.2d:%.2d:%.2d.%03ld", timeinfo->tm_hour, timeinfo->tm_min, timeinfo->tm_sec,tv.tv_usec/1000);
     std::string str(timeStr);
 #endif
-
     return str;
 }
