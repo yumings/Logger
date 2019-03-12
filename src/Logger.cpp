@@ -56,7 +56,7 @@ Logger::~Logger()
 }
 
 //–¥»Î–≈œ¢
-void Logger::TraceInfo(std::string strInfo,LogLevel logLevel)
+void Logger::TraceInfo(LogLevel logLevel,std::string strInfo)
 {
     if (strInfo.empty())
         return;

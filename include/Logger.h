@@ -45,7 +45,7 @@ public:
     virtual ~Logger();
 public:
 	//写入信息 ,默认只记录错误信息
-    void TraceInfo(std::string strInfo,LogLevel logLevel = Log_Error);
+    void TraceInfo(LogLevel logLevel,std::string strInfo);
     void setLogPath(std::string& logPtah);
 
 
