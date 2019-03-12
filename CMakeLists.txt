@@ -15,7 +15,10 @@ AUX_SOURCE_DIRECTORY(src DIR_SRCS)
 SET(TEST_MATH ${DIR_SRCS})
 #SET(CMAKE_CXX_COMPILER "arm-linux-gnueabi-g++")
 #6.add executable file，添加要编译的可执行文件
-ADD_EXECUTABLE(${PROJECT_NAME} ${TEST_MATH})
+#ADD_EXECUTABLE(${PROJECT_NAME} ${TEST_MATH})
+#7.add lib file 添加要编译的动态库
+#ADD_LIBRARY(${PROJECT_NAME} STATIC ${TEST_MATH})
+ADD_LIBRARY(${PROJECT_NAME} SHARED ${TEST_MATH})
 
 #7.add link library，添加可执行文件所需要的库，比如我们用到了libm.so（命名规则：lib+name+.so），就添加该库的名称
 
