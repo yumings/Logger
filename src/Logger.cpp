@@ -102,7 +102,6 @@ void Logger::setLogPath(std::string& logPath)
 
 void Logger::createLogFilename()
 {
-    GetCurrentSystemTime();
     if (GetCurrentSystemTime().compare(logFileName) != 0) {
         logFileName = GetCurrentSystemTime();
     }
