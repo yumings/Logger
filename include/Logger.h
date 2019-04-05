@@ -51,7 +51,7 @@ public:
 
 private:
     std::ofstream g_fileStream;//文件流
-    LogLevel nLogLevel;// logLevel 级别
+    LogLevel nLogLevel = LogLevel::Log_Error;// logLevel 级别
     std::string logFilePath;//log 路径
     std::string logFileName;//log文件名称
 private:

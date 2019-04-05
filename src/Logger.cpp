@@ -8,7 +8,6 @@
 //默认的构造函数，设置错误级别，记录错误信息
 Logger::Logger()
 {
-    nLogLevel = LogLevel::Log_Error;// logLevel 级别	 
     logFilePath = ".";//默认当前目录
     createLogPath();
     createLogFilename();
