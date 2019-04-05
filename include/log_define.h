@@ -2,13 +2,12 @@
 #ifndef LOG_DEFINE_H
 #define LOG_DEFINE_H
 
-//хуж╬╪╤╠П╣длАй╬пео╒ 
-static const int MAX_STR_LEN = 1024;
+//Ф≈╔Е©≈Г╨╖Е┬╚Г └Ф▐░Г╓╨Д©║Ф│╞ 
 
 typedef enum LogLevel
 {
-    Log_Info = 0,// ╪гб╪х╚╡©пео╒
-    Log_Warning , // ╪гб╪╬╞╦Фпео╒╨м╢МнСпео╒
-    Log_Error, //ж╩╪гб╪╢МнСпео╒
+    Log_Info = 0,// Х╝╟Е╫∙Е┘╗И┐╗Д©║Ф│╞
+    Log_Warning , // Х╝╟Е╫∙Х╜╕Е▒┼Д©║Ф│╞Е▓▄И■≥Х╞╞Д©║Ф│╞
+    Log_Error, //Е▐╙Х╝╟Е╫∙И■≥Х╞╞Д©║Ф│╞
 }LogLevel;
 #endif

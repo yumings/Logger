@@ -13,10 +13,10 @@
 #endif 
 #define DllExport   __declspec( dllexport )
 /*
-    * ÀàÃû£ºLogger
-    * ×÷ÓÃ£ºÌá¹©Ğ´ÈÕÖ¾¹¦ÄÜ£¬Ö§³Ö¶àÏß³Ì£¬Ö§³Ö¿É±äĞÎ²ÎÊı²Ù×÷£¬Ö§³ÖĞ´ÈÕÖ¾¼¶±ğµÄÉèÖÃ
-    * ½Ó¿Ú£ºSetLogLevel£ºÉèÖÃĞ´ÈÕÖ¾¼¶±ğ
-            TraceInfo£ºĞ´ĞÅÏ¢
+    * ç±»åï¼šLogger
+    * ä½œç”¨ï¼šæä¾›å†™æ—¥å¿—åŠŸèƒ½ï¼Œæ”¯æŒå¤šçº¿ç¨‹ï¼Œæ”¯æŒå¯å˜å½¢å‚æ•°æ“ä½œï¼Œæ”¯æŒå†™æ—¥å¿—çº§åˆ«çš„è®¾ç½®
+    * æ¥å£ï¼šSetLogLevelï¼šè®¾ç½®å†™æ—¥å¿—çº§åˆ«
+            TraceInfoï¼šå†™ä¿¡æ¯
 */
 #ifdef _WIN32
 class DllExport Logger
@@ -27,14 +27,14 @@ class Logger
 
 private:
 
-    Logger();//Ë½ÓĞ¹¹Ôìº¯Êı
-    Logger(const Logger& log){}//½ûÖ¹¿½±´ 
+    Logger();//ç§æœ‰æ„é€ å‡½æ•°
+    Logger(const Logger& log){}//ç¦æ­¢æ‹·è´ 
 	Logger& operator=(const Logger&)
     {
         return *this;
-    }//½ûÖ¹¸³Öµ
+    }//ç¦æ­¢èµ‹å€¼
 #ifdef _WIN32
-    static HANDLE mutex;    //»¥³âËø
+    static HANDLE mutex;    //äº’æ–¥é”
 #else
 	static pthread_mutex_t mutex;
 #endif
@@ -44,23 +44,23 @@ public:
 
     virtual ~Logger();
 public:
-	//Ğ´ÈëĞÅÏ¢ ,Ä¬ÈÏÖ»¼ÇÂ¼´íÎóĞÅÏ¢
+	//å†™å…¥ä¿¡æ¯ ,é»˜è®¤åªè®°å½•é”™è¯¯ä¿¡æ¯
     void TraceInfo(LogLevel logLevel,std::string strInfo);
     void setLogPath(std::string& logPtah);
 
 
 private:
-    std::ofstream g_fileStream;//ÎÄ¼şÁ÷
-    LogLevel nLogLevel;// logLevel ¼¶±ğ
-    std::string logFilePath;//log Â·¾¶
-    std::string logFileName;//logÎÄ¼şÃû³Æ
+    std::ofstream g_fileStream;//æ–‡ä»¶æµ
+    LogLevel nLogLevel;// logLevel çº§åˆ«
+    std::string logFilePath;//log è·¯å¾„
+    std::string logFileName;//logæ–‡ä»¶åç§°
 private:
-    //Ğ´ÎÄ¼ş²Ù×÷
+    //å†™æ–‡ä»¶æ“ä½œ
     void createLogPath();
-    void createLogFilename(); //´´½¨logÎÄ¼ş
-    std::string GetCurrentSystemTime();//»ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä Äê£¬ÔÂ£¬ÈÕ
-    std::string GetCurrTime();//Ê±£¬·Ö£¬Ãë
-    void Trace(std::string& logInfo);//Ğ´Èë¸ú×ÙĞÅÏ¢  
+    void createLogFilename(); //åˆ›å»ºlogæ–‡ä»¶
+    std::string GetCurrentSystemTime();//è·å–å½“å‰ç³»ç»Ÿæ—¶é—´ å¹´ï¼Œæœˆï¼Œæ—¥
+    std::string GetCurrTime();//æ—¶ï¼Œåˆ†ï¼Œç§’
+    void Trace(std::string& logInfo);//å†™å…¥è·Ÿè¸ªä¿¡æ¯  
 
 };
 
