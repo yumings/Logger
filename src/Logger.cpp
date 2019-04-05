@@ -5,11 +5,11 @@
 
 
 
-//Ä¬ÈÏµÄ¹¹Ôìº¯Êı£¬ÉèÖÃ´íÎó¼¶±ğ£¬¼ÇÂ¼´íÎóĞÅÏ¢
+//é»˜è®¤çš„æ„é€ å‡½æ•°ï¼Œè®¾ç½®é”™è¯¯çº§åˆ«ï¼Œè®°å½•é”™è¯¯ä¿¡æ¯
 Logger::Logger()
 {
-    nLogLevel = LogLevel::Log_Error;// logLevel ¼¶±ğ	 
-    logFilePath = ".";//Ä¬ÈÏµ±Ç°Ä¿Â¼
+    nLogLevel = LogLevel::Log_Error;// logLevel çº§åˆ«	 
+    logFilePath = ".";//é»˜è®¤å½“å‰ç›®å½•
     createLogPath();
     createLogFilename();
 }
@@ -23,7 +23,7 @@ Logger* Logger::getInstance()
 #else
 		  pthread_mutex_lock(&mutex);
 #endif
-          if(instance==nullptr){//ĞèÒªÊ±´´½¨¶ÔÏó
+          if(instance==nullptr){//éœ€è¦æ—¶åˆ›å»ºå¯¹è±¡
 		  	Logger *log = new Logger(); 
 			instance = log;
 		  }
@@ -35,7 +35,7 @@ Logger* Logger::getInstance()
 	}
 	return instance;
 }
-//»¥³âÁ¿³õÊ¼»¯
+//äº’æ–¥é‡åˆå§‹åŒ–
 #ifdef _WIN32
 HANDLE Logger::mutex = nullptr;
 #else
@@ -45,17 +45,17 @@ pthread_mutex_t Logger::mutex = PTHREAD_MUTEX_INITIALIZER;
 #endif // _WIN32
 
 
-Logger* Logger::instance= nullptr;//ÏÈ³õÊ¼»¯Ò»¸ö¿ÕÖµ£¬È»ºóĞèÒª¶ÔÏóÊ±´´½¨¶ÔÏó¡£±¥ººÄ£Ê½
+Logger* Logger::instance= nullptr;//å…ˆåˆå§‹åŒ–ä¸€ä¸ªç©ºå€¼ï¼Œç„¶åéœ€è¦å¯¹è±¡æ—¶åˆ›å»ºå¯¹è±¡ã€‚é¥±æ±‰æ¨¡å¼
 
-//ÊÍ·Å×ÊÔ´
+//é‡Šæ”¾èµ„æº
 Logger::~Logger()
 {
-    //ÊÍ·ÅÁÙ½çÇø 
+    //é‡Šæ”¾ä¸´ç•ŒåŒº 
     if (g_fileStream.is_open())
         g_fileStream.close();
 }
 
-//Ğ´ÈëĞÅÏ¢
+//å†™å…¥ä¿¡æ¯
 void Logger::TraceInfo(LogLevel logLevel,std::string strInfo)
 {
     if (strInfo.empty())
@@ -69,7 +69,6 @@ void Logger::TraceInfo(LogLevel logLevel,std::string strInfo)
 	else if(logLevel == LogLevel::Log_Info)
 		prefix = "INFO";
     temp += " ["+ prefix+"] \t" + strInfo;
-	//std::cout << temp << std::endl;
     Trace(temp);
 }
 
@@ -119,7 +118,7 @@ void Logger::Trace(std::string & logInfo)
         return;
     try
     {
-        //ÈôÎÄ¼şÁ÷Ã»ÓĞ´ò¿ª£¬ÔòÖØĞÂ´ò¿ª 
+        //è‹¥æ–‡ä»¶æµæ²¡æœ‰æ‰“å¼€ï¼Œåˆ™é‡æ–°æ‰“å¼€ 
         if (!g_fileStream.is_open())
         {
             if(!logFilePath.empty())
@@ -134,7 +133,7 @@ void Logger::Trace(std::string & logInfo)
                 return;
             }
         }
-        //Ğ´ÈÕÖ¾ĞÅÏ¢µ½ÎÄ¼şÁ÷ 
+        //å†™æ—¥å¿—ä¿¡æ¯åˆ°æ–‡ä»¶æµ 
         //std::cout<< logInfo << std::endl;
         g_fileStream << logInfo << std::endl;
         g_fileStream.flush();
@@ -147,7 +146,7 @@ void Logger::Trace(std::string & logInfo)
 }
 
 std::string Logger::GetCurrentSystemTime()
-{//»ñÈ¡ÏµÍ³Ê±¼ä
+{//è·å–ç³»ç»Ÿæ—¶é—´
 #ifdef _WIN32
     SYSTEMTIME sys;
     GetLocalTime(&sys);
