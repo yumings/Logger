@@ -22,7 +22,7 @@ int main(int argc,char* argv[])
 
 	log->TraceInfo(LogLevel::Log_Error,"image has changed");	
 	log->TraceInfo(LogLevel::Log_Warning,"image has changed");	
-    //¶àÏß³Ìlog
+    //å¤šçº¿ç¨‹log
 
     std::thread thread1(fun,log,10);
     std::thread thread2(fun,log,20);
