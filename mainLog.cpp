@@ -2,7 +2,7 @@
 #include <log_define.h>
 #include <thread>
 #include <string>
-
+#include "cjson.h"
 
 //
 void fun(Logger* log,int a)
@@ -18,16 +18,24 @@ void fun(Logger* log,int a)
 
 int main(int argc,char* argv[])
 {
+	//读取配置文件
+	std::string  jsonFileName = "config.json";
+	rapidjson::Document doc = nullptr;
+	int ret = GetDocumentFromJsonFile(jsonFileName, doc);
+	if (ret < 0) {
+		std::cout << "read json failed" << std::endl;
+		return ret;
+	}
+	ret = checkJsonFormat(doc);
+	if (ret != ErrorNone) {
+		std::cout << "checkConfigJsonFormat failed" << std::endl;
+		return ret;
+	}
+
 	Logger* log = Logger::getInstance();
 
 	log->TraceInfo(LogLevel::Log_Error,"image has changed");	
 	log->TraceInfo(LogLevel::Log_Warning,"image has changed");	
-    //多线程log
 
-    std::thread thread1(fun,log,10);
-    std::thread thread2(fun,log,20);
-
-    thread1.join();
-    thread2.join(); 
 	return 0;
 }

@@ -11,7 +11,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 #endif 
-#define DllExport   __declspec( dllexport )
+#define DllExport   __declspec(dllexport)
 /*
     * 类名：Logger
     * 作用：提供写日志功能，支持多线程，支持可变形参数操作，支持写日志级别的设置
