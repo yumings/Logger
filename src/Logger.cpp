@@ -6,15 +6,19 @@
 
 
 //默认的构造函数，设置错误级别，记录错误信息
-Logger::Logger()
+Logger::Logger(std::string path)
 {
-    logFilePath = ".";//默认当前目录
+    if(path.empty())
+        logFilePath = ".";//默认当前目录
+    else
+    logFilePath = path;
     createLogPath();
     createLogFilename();
 }
 
 
-Logger* Logger::getInstance()
+
+Logger* Logger::getInstance(std::string path)
 {	
 	if(instance==nullptr){
 #ifdef _WIN32
@@ -23,7 +27,7 @@ Logger* Logger::getInstance()
 		  pthread_mutex_lock(&mutex);
 #endif
           if(instance==nullptr){//需要时创建对象
-		  	Logger *log = new Logger(); 
+		  	Logger *log = new Logger(path); 
 			instance = log;
 		  }
 #ifdef _WIN32
@@ -74,7 +78,7 @@ void Logger::TraceInfo(LogLevel logLevel,std::string strInfo)
 void MakeSureDirectoryPathExists(std::string & filePath)
 {
 #ifdef _WIN32
-    if (0 != _access(filePath.c_str(), 0)) {
+    if (0 != _access(filePath.c_str(), 0)) {//如果文件
         filePath = "";
     }
 #else
@@ -92,11 +96,6 @@ void Logger::createLogPath()
     logFileName = GetCurrentSystemTime();
 }
 
-void Logger::setLogPath(std::string& logPath)
-{
-    logFilePath = logPath;
-    logFileName = GetCurrentSystemTime();
-}
 
 void Logger::createLogFilename()
 {
