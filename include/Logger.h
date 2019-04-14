@@ -26,7 +26,6 @@ class Logger
 {
 
 private:
-
     Logger(std::string path);//私有构造函数
     Logger(const Logger& log){}//禁止拷贝 
 	Logger& operator=(const Logger&)
@@ -40,13 +39,13 @@ private:
 #endif
     static Logger* instance;
 public:
-	static Logger* getInstance(std::string path);
+	static Logger* getInstance(std::string path = "");
 
     virtual ~Logger();
 public:
 	//写入信息 ,默认只记录错误信息
     void TraceInfo(LogLevel logLevel,std::string strInfo);
-
+    
 private:
     std::ofstream g_fileStream;//文件流
     LogLevel nLogLevel = LogLevel::Log_Error;// logLevel 级别

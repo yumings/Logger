@@ -32,7 +32,7 @@ int main(int argc,char* argv[])
 	// 	return ret;
 	// }
 
-	Logger* log = Logger::getInstance("/mnt/f/plan/log/logger/bin/1");
+	Logger* log = Logger::getInstance();
 	log->TraceInfo(LogLevel::Log_Error,"image has changed");	
 	log->TraceInfo(LogLevel::Log_Warning,"image has changed");	
 

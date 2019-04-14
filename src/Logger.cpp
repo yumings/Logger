@@ -11,11 +11,10 @@ Logger::Logger(std::string path)
     if(path.empty())
         logFilePath = ".";//默认当前目录
     else
-    logFilePath = path;
+        logFilePath = path;
     createLogPath();
     createLogFilename();
 }
-
 
 
 Logger* Logger::getInstance(std::string path)
