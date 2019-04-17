@@ -71,7 +71,7 @@ int ResolveJson(const std::string &json_string, rapidjson::Document &doc)
 }
 
 
-// UTF-8µ½GB2312µÄ×ª»»
+// UTF-8åˆ°GB2312çš„è½¬æ¢
 std::string UTF8ToGB(const char* str)
 {
     std::string result;
@@ -80,12 +80,12 @@ std::string UTF8ToGB(const char* str)
     WCHAR *strSrc;
     LPSTR szRes;
 
-    // »ñµÃÁÙÊ±±äÁ¿µÄ´óĞ¡
+    // è·å¾—ä¸´æ—¶å˜é‡çš„å¤§å°
     int len = MultiByteToWideChar(CP_UTF8, 0, str, -1, NULL, 0);
     strSrc = new WCHAR[len + 1];
     MultiByteToWideChar(CP_UTF8, 0, str, -1, strSrc, len);
 
-    // »ñµÃÁÙÊ±±äÁ¿µÄ´óĞ¡
+    // è·å¾—ä¸´æ—¶å˜é‡çš„å¤§å°
     len = WideCharToMultiByte(CP_ACP, 0, strSrc, -1, NULL, 0, NULL, NULL);
     szRes = new CHAR[len + 1];
     WideCharToMultiByte(CP_ACP, 0, strSrc, -1, szRes, len, NULL, NULL);
@@ -100,7 +100,7 @@ std::string UTF8ToGB(const char* str)
     return result;
 }
 
-// GB2312µ½UTF-8µÄ×ª»»
+// GB2312åˆ°UTF-8çš„è½¬æ¢
 std::string GBToUTF8(const char* str)
 {
     std::string result;
@@ -109,12 +109,12 @@ std::string GBToUTF8(const char* str)
     WCHAR *strSrc;
     CHAR *szRes;
 
-    // »ñµÃÁÙÊ±±äÁ¿µÄ´óĞ¡
+    // è·å¾—ä¸´æ—¶å˜é‡çš„å¤§å°
     int len = MultiByteToWideChar(CP_ACP, 0, str, -1, NULL, 0);
     strSrc = new WCHAR[len + 1];
     MultiByteToWideChar(CP_ACP, 0, str, -1, strSrc, len);
 
-    // »ñµÃÁÙÊ±±äÁ¿µÄ´óĞ¡
+    // è·å¾—ä¸´æ—¶å˜é‡çš„å¤§å°
     len = WideCharToMultiByte(CP_UTF8, 0, strSrc, -1, NULL, 0, NULL, NULL);
     szRes = new CHAR[len + 1];
     WideCharToMultiByte(CP_UTF8, 0, strSrc, -1, szRes, len, NULL, NULL);
@@ -145,7 +145,7 @@ int GetStringFromJsonFile(const std::string &json_file, std::string &json_string
     json_string.clear();
     std::string line;
 
-    while (getline(ifs, line)) // TODO: ´Ë²½Öè»áµ¼ÖÂ°üº¬ÖĞÎÄµÄ×Ö·û²»ÄÜÕı³£½âÎö, ifstream¶ÁÈ¡UTF-8ÖĞÎÄĞèÒª´¦Àí, ÒÑ½â¾ö
+    while (getline(ifs, line)) // TODO: æ­¤æ­¥éª¤ä¼šå¯¼è‡´åŒ…å«ä¸­æ–‡çš„å­—ç¬¦ä¸èƒ½æ­£å¸¸è§£æ, ifstreamè¯»å–UTF-8ä¸­æ–‡éœ€è¦å¤„ç†, å·²è§£å†³
     {
         line = UTF8ToGB(line.c_str());
         json_string.append(line + "\n");
