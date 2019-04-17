@@ -17,7 +17,7 @@ run: clean all
 	./$(BIN)/$(EXECUTABLE)
 
 $(BIN)/$(EXECUTABLE): $(SRC)/*.cpp *.cpp
-	$(CXX) $(CXX_FLAGS) -I$(INCLUDE)  -L$(LIB) $^ -o $@ $(LIBRARIES)
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE) -I$(INCLUDE)/rapidjson-1.1.0/include  -L$(LIB) $^ -o $@ $(LIBRARIES)
 
 clean:
 	-rm $(BIN)/*
