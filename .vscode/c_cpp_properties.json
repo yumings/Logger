@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "WSL",
+            "includePath": [
+                "/mnt/f/share/code/include",
+                "/mnt/f/share/code/include/rapidjson-1.1.0/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

@@ -39,7 +39,7 @@ private:
 #endif
     static Logger* instance;
 public:
-	static Logger* getInstance(std::string path = "");
+	static Logger* getInstance(std::string path = "",int wirteLevel = 1);
 
     virtual ~Logger();
 public:
@@ -47,17 +47,19 @@ public:
     void TraceInfo(LogLevel logLevel,std::string strInfo);
     
 private:
-    std::ofstream g_fileStream;//文件流
+    std::fstream g_fileStream;//文件流
     LogLevel nLogLevel = LogLevel::Log_Error;// logLevel 级别
     std::string logFilePath;//log 路径
     std::string logFileName;//log文件名称
 private:
     //写文件操作
-    void createLogPath();
-    void createLogFilename(); //创建log文件
+    void getLogPathAndLogName();
     std::string GetCurrentSystemTime();//获取当前系统时间 年，月，日
-    std::string GetCurrTime();//时，分，秒
-    void Trace(std::string& logInfo);//写入跟踪信息  
+    std::string GetCurrTime();//时，分，秒,微妙 
+    void Trace(std::string& logInfo);//写入跟踪信息 
+    size_t GetLogFileSize();//获取log文件的大小
+    void CloseLogFile();//关闭log文件
+    void ClearLogFile();//清除log文件中的信息 
 
 };
 

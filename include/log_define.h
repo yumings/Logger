@@ -6,8 +6,9 @@
 
 typedef enum LogLevel
 {
-    Log_Info = 0,// 记录全部信息
-    Log_Warning , // 记录警告信息和错误信息
-    Log_Error, //只记录错误信息
+    Log_debug = 1,
+    Log_Info = 2,// 记录全部信息
+    Log_Warning =4 , // 记录警告信息
+    Log_Error = 8, //只记录错误信息
 }LogLevel;
 #endif
