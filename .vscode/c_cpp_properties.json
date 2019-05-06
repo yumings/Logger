@@ -1,17 +1,17 @@
 {
     "configurations": [
         {
-            "name": "WSL",
+            "name": "mingw-w64",
             "includePath": [
-                "/mnt/f/share/code/include",
-                "/mnt/f/share/code/include/rapidjson-1.1.0/include"
+                "F:/share/code/include",
+                "F:/share/code/include/rapidjson-1.1.0/include"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "/usr/bin/gcc",
+            "compilerPath": "C:/Program Files/mingw64/bin/gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64"
