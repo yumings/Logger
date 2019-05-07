@@ -113,11 +113,7 @@ void Logger::Trace(std::string &logInfo)
                     logFilePath += "/";
             std::string temp = logFilePath + logFileName;
             std::cout << temp << std::endl;
-            //处理log文件大小超过规定的大小的处理方法
-            size_t logSize = GetLogFileSize();
-            if(logSize > 1024*1024){ //如果文件的大小大于5M 则清理文件
-                ClearLogFile();
-            }
+        
 
             g_fileStream.open(temp, std::ios::out|std::ios::app);
             if (!g_fileStream.is_open())
@@ -127,8 +123,11 @@ void Logger::Trace(std::string &logInfo)
             }
         }
         //写日志信息到文件流
-        //将文件指针指向开始
-        //g_fileStream.seekp(0,std::ios::beg);
+        //处理log文件大小超过规定的大小的处理方法
+        size_t logSize = GetLogFileSize();
+        if(logSize > 1024*1024){ //如果文件的大小大于5M 则清理文件
+            ClearLogFile();
+        }
       
         std::streampos pos = g_fileStream.tellg();
         std::cout << pos << std::endl;
