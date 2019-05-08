@@ -5,13 +5,13 @@
 #include "cjson.h"
 
 //
-void fun(Logger* log,int a)
+void fun(Logger* log,std::string& a)
 {
-    for (int i = 0; i < 1000; ++i)
+    for (int i = 0; i < 10000; ++i)
     {
-        std::string info = "thread:" + std::to_string(a);
-        
+        std::string info = "thread:" + a;   
         log->TraceInfo(LogLevel::Log_Info,info);
+		Sleep(1);
     }
 }
 
@@ -41,13 +41,9 @@ int main(int argc,char* argv[])
 	//设置调试等级
 	//控制log文件的大小
 	Logger* log = Logger::getInstance();
-	for(size_t i = 0; i < 100; i++)
-	{
-		log->TraceInfo(LogLevel::Log_Error,"image has changed");	
-		log->TraceInfo(LogLevel::Log_Warning,"image has changed");	
-		log->TraceInfo(LogLevel::Log_Warning,"hellowrold has changed");	
-	}
-	
+	std::string str = "std::cout << checkConfigJsonFormat failed << std::endl;";
+	std::thread t(fun,log,std::ref(str));
+	t.join();
 
 	return 0;
 }

@@ -113,8 +113,6 @@ void Logger::Trace(std::string &logInfo)
                     logFilePath += "/";
             std::string temp = logFilePath + logFileName;
             std::cout << temp << std::endl;
-        
-
             g_fileStream.open(temp, std::ios::out|std::ios::app);
             if (!g_fileStream.is_open())
             {
@@ -182,13 +180,21 @@ std::string Logger::GetCurrTime()
 size_t Logger::GetLogFileSize()
 {
     std::string tmp = logFilePath + logFileName;
-    g_fileStream.open(tmp,std::ios::out | std::ios::app);
+    if(!g_fileStream.is_open()){
+        g_fileStream.open(tmp,std::ios::out | std::ios::app);
+        if (!g_fileStream.is_open())
+        {
+            std::cout << "open failed" << std::endl;
+            return -1;
+        }
+    }
+  
     std::streampos cur_pos = g_fileStream.tellg();//获取当前的指针指向的位置 
     g_fileStream.seekg(0,std::ios::end); //指针指向文件末尾
     std::streampos pos = g_fileStream.tellg();//获取文件的长度
     g_fileStream.seekg(cur_pos);//恢复指针指向的位置
-    g_fileStream.close();
-    return static_cast<size_t>(pos);
+ 
+    return static_cast<size_t>(pos);;
 }
 
 
