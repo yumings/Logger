@@ -1,10 +1,12 @@
+#include "cjson.h"
 #include <Logger.h>
 #include <log_define.h>
 #include <thread>
 #include <string>
-#include "cjson.h"
+
 
 //
+
 void fun(Logger* log,std::string& a)
 {
     for (int i = 0; i < 10000; ++i)
